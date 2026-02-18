@@ -1,39 +1,87 @@
 
 * { box-sizing: border-box; }
-body { font-family: 'Open Sans', sans-serif; margin: 0; color: #333; line-height: 1.6; }
+body { font-family: 'Open Sans', sans-serif; margin: 0; color: #333; }
 
-/* Menu Justificado */
-nav { background: #003366; padding: 15px 10%; position: sticky; top: 0; z-index: 1000; }
-.nav-links { display: flex; justify-content: space-between; list-style: none; margin: 0; padding: 0; width: 100%; }
-.nav-links a { text-decoration: none; color: white; font-weight: 600; font-size: 0.85rem; text-transform: uppercase; }
+/* Barra de Menu Branca */
+nav { 
+    background: #ffffff; 
+    padding: 10px 5%; 
+    display: flex; 
+    align-items: center; 
+    justify-content: center; 
+    position: sticky; 
+    top: 0; 
+    z-index: 1001; 
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1); 
+}
 
-/* Hero Area (Logo + Fundo Escritório) */
-.brand-area { position: relative; text-align: center; padding: 80px 0; overflow: hidden; display: flex; align-items: center; justify-content: center; min-height: 400px; }
-.bg-image { position: absolute; top: 0; left: 0; right: 0; bottom: 0; background-image: url('img/frete_escritorio.png'); background-size: cover; background-position: center; filter: blur(6px); transform: scale(1.05); z-index: 1; }
-.brand-area::after { content: ''; position: absolute; top: 0; left: 0; right: 0; bottom: 0; background: rgba(255, 255, 255, 0.2); z-index: 2; }
-.brand-area img { position: relative; max-width: 450px; width: 85%; z-index: 3; }
+.nav-logo img { max-height: 50px; }
 
+/* Menu Hambúrguer */
+.menu-icon {
+    position: absolute;
+    left: 5%;
+    font-size: 24px;
+    cursor: pointer;
+    color: #003366;
+}
+
+#menu-toggle { display: none; }
+
+.nav-links {
+    position: fixed;
+    top: 0;
+    left: -100%;
+    width: 250px;
+    height: 100vh;
+    background: white;
+    display: flex;
+    flex-direction: column;
+    padding: 60px 20px;
+    transition: 0.4s;
+    list-style: none;
+    z-index: 1000;
+}
+
+#menu-toggle:checked ~ .nav-links { left: 0; }
+
+.nav-links li { margin: 20px 0; }
+.nav-links a { 
+    text-decoration: none; 
+    color: #003366; 
+    font-weight: 600; 
+    font-size: 1rem; 
+    text-transform: uppercase; 
+}
+
+/* Imagem de Fundo (Sem logo sobreposta) */
+.brand-area { 
+    position: relative; 
+    height: 450px; 
+    overflow: hidden; 
+}
+.bg-image { 
+    width: 100%; 
+    height: 100%; 
+    background-image: url('img/frete_escritorio.png'); 
+    background-size: cover; 
+    background-position: center; 
+    filter: blur(4px); 
+    transform: scale(1.05); 
+}
+
+/* Slider de Notícias RSS */
+.news-slider { 
+    background: #f4f4f4; 
+    padding: 40px 0; 
+    text-align: center; 
+}
+
+/* Grid Profissionais (2x3) */
 .container { max-width: 1200px; margin: 0 auto; padding: 40px 20px; }
-.section-title { text-align: center; color: #003366; font-family: 'Montserrat', sans-serif; margin-bottom: 50px; font-size: 2rem; position: relative; }
-
-/* GRID CONFIGURADO PARA 2 EM CIMA E 3 EMBAIXO */
-.grid-equipe { 
-    display: grid;
-    grid-template-columns: repeat(6, 1fr); 
-    gap: 25px;
-}
-
-/* Card Estilo Base */
-.card { 
-    background: #fff; border: 1px solid #eee; display: flex; align-items: center; 
-    padding: 20px; text-decoration: none; color: inherit; transition: 0.3s; border-radius: 4px;
-}
-.card:hover { border-color: #c5a059; box-shadow: 0 10px 20px rgba(0,0,0,0.05); }
-
-/* Marcio e Maria (Ocupam 3 colunas cada = 2 cards na linha) */
+.grid-equipe { display: grid; grid-template-columns: repeat(6, 1fr); gap: 25px; }
+.card { background: #fff; border: 1px solid #eee; display: flex; align-items: center; padding: 20px; text-decoration: none; color: inherit; border-radius: 4px; }
 .card-marcio, .card-maria { grid-column: span 3; }
-
-/* Rafael, Thiago e Anna (Ocupam 2 colunas cada = 3 cards na linha) */
 .card-rafael, .card-thiago, .card-anna { grid-column: span 2; }
 
 .foto-box { width: 130px; height: 130px; position: relative; margin-right: 25px; flex-shrink: 0; overflow: hidden; border-radius: 4px; }
@@ -41,23 +89,12 @@ nav { background: #003366; padding: 15px 10%; position: sticky; top: 0; z-index:
 .foto-real { width: 100%; height: 100%; object-fit: cover; position: absolute; z-index: 1; }
 .card:hover .iniciais { opacity: 0; }
 
-/* Áreas de Atuação */
-.atuacao-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 15px; }
-.atuacao-item { padding: 25px; border: 1px solid #eee; text-align: center; transition: 0.3s; background: #fff; }
-.atuacao-item:hover { background: #003366; color: white; }
-
 /* Rodapé */
-footer { background: #003366; color: white; padding: 60px 10% 20px; }
-.footer-grid { display: grid; grid-template-columns: 1.5fr 1fr; gap: 50px; }
-.footer-info-group a { color: white; text-decoration: none; font-weight: 600; }
-.map-container { width: 100%; height: 250px; border: none; border-radius: 4px; }
-
-/* Perfil Individual */
-.perfil-container { max-width: 1000px; margin: 60px auto; display: grid; grid-template-columns: 350px 1fr; gap: 50px; padding: 0 20px; }
-.perfil-foto img { width: 100%; border-radius: 4px; }
+footer { background: #003366; color: white; padding: 40px 10%; }
+.footer-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; }
 
 @media (max-width: 900px) { 
     .grid-equipe { grid-template-columns: 1fr; }
     .card-marcio, .card-maria, .card-rafael, .card-thiago, .card-anna { grid-column: span 1; }
-    .footer-grid, .perfil-container { grid-template-columns: 1fr; }
+    .footer-grid { grid-template-columns: 1fr; }
 }
